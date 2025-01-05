@@ -1,10 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
+  const stepInto = () => {
+    console.log("Stepped into");
+  };
+  const stepOver = () => {
+    console.log("stepped over");
+  };
+
+  const onButtonPressed = () => {
+    console.log("called when button pressed");
+  };
+
+  useEffect(() => {
+    console.log("Pause here and step over");
+    stepOver();
+    stepInto();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Button onPress={onButtonPressed} title="myButton"></Button>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +31,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
